@@ -1,5 +1,36 @@
+/*
+    true => x
+    false => 0
+*/
+var juego = false;
+
 function $(selector){
    return document.querySelector(selector);
+}
+
+function jugar(seleccionado){
+    if(juego){
+        seleccionado.innerHTML = "x";
+    }
+    else{
+        seleccionado.innerHTML = "0";
+
+    }
+   
+}
+
+function definirEventos(){
+    var elements = document.querySelectorAll(".cat-element");
+
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+
+        element.addEventListener("click", function(){
+            jugar(this)
+        });
+    }
+
+
 }
 
 function build_cat(){
@@ -10,6 +41,8 @@ function build_cat(){
             
 
     }
+
+    definirEventos();
 }
 
 function build_item(i){
