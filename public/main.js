@@ -15,7 +15,7 @@
             seleccionado.innerHTML = "x";
         }
         else{
-            seleccionado.innerHTML = "0";
+            seleccionado.innerHTML = "O";
 
         }
     
