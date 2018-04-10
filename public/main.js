@@ -2,51 +2,56 @@
     true => x
     false => 0
 */
-var juego = false;
 
-function $(selector){
-   return document.querySelector(selector);
-}
+(function(){
+    var juego = false;
 
-function jugar(seleccionado){
-    if(juego){
-        seleccionado.innerHTML = "x";
+    function $(selector){
+    return document.querySelector(selector);
     }
-    else{
-        seleccionado.innerHTML = "0";
+
+    function jugar(seleccionado){
+        if(juego){
+            seleccionado.innerHTML = "x";
+        }
+        else{
+            seleccionado.innerHTML = "0";
+
+        }
+    
+    }
+
+    function definirEventos(){
+        var elements = document.querySelectorAll(".cat-element");
+
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+
+            element.addEventListener("click", function(){
+                jugar(this)
+            });
+        }
+
 
     }
+
+    function build_cat(){
+        for(var i = 0;i < 9; i++){
+            var item = build_item(i);
+
+            $("#cat").innerHTML += item;
+                
+
+        }
+
+        definirEventos();
+    }
+
+    function build_item(i){
+        return "<div class='cat-element col-xs-4' id='elemento-"+i+"'></div>"
+    }
+
+    build_cat();
    
-}
+})();
 
-function definirEventos(){
-    var elements = document.querySelectorAll(".cat-element");
-
-    for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
-
-        element.addEventListener("click", function(){
-            jugar(this)
-        });
-    }
-
-
-}
-
-function build_cat(){
-    for(var i = 0;i < 9; i++){
-        var item = build_item(i);
-
-        $("#cat").innerHTML += item;
-            
-
-    }
-
-    definirEventos();
-}
-
-function build_item(i){
-    return "<div class='cat-element col-xs-4' id='elemento-"+i+"'></div>"
-}
-
-build_cat();
