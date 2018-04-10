@@ -1,3 +1,9 @@
 body{
-    color:rgb(237, 53, 53);
+    /* color:rgb(237, 53, 53); */
+}
+
+.cat-element{
+    border:solid 1px rgb(163, 161, 161);
+    height: 100px;
+
 }
