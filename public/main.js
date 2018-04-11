@@ -3,19 +3,17 @@
     false => 0
 */
 (function(){
-    var juego = false;
 
     function $(selector){
     return document.querySelector(selector);
     }
 
     function jugar(seleccionado){
-        if(juego){
+        if(true){
             seleccionado.innerHTML = "x";
         }
         else{
             seleccionado.innerHTML = "O";
-
         }
     
     }
@@ -52,15 +50,8 @@
 
     build_cat();
 
-    var socket = io(); 
+    var socket = new Socket(1,2,3);
 
-    socket.on("connect", function(){
-        socket.on("init", function(data){
-            console.log(data);
-            juego = data.figure;
-        });
-
-    });
    
 })();
 
