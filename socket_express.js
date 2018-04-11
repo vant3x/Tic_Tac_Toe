@@ -19,6 +19,10 @@ io.on("connection", function(socket){
 
     figure = !figure;
 
+    socket.on("nuevo_movimiento", function(data){
+        console.log(data);
+    });
+
     /* socket.broadcast.emit */
 
 });

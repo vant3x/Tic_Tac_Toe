@@ -25,7 +25,9 @@
             var element = elements[i];
 
             element.addEventListener("click", function(){
-                jugar(this);
+                var posicion = this.id.split("-")[1];
+               // console.log(posicion);
+                socket.play(posicion);
             });
         }
 
@@ -50,7 +52,9 @@
 
     build_cat();
 
-    var socket = new Socket(1,2,3);
+    var socket = new Socket(function(figura,posicion){
+        $("#elemento-"+posicion).innerHTML = figura;
+    },2,3);
 
    
 })();
