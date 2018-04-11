@@ -2,7 +2,6 @@
     true => x
     false => 0
 */
-
 (function(){
     var juego = false;
 
@@ -28,7 +27,7 @@
             var element = elements[i];
 
             element.addEventListener("click", function(){
-                jugar(this)
+                jugar(this);
             });
         }
 
@@ -52,6 +51,15 @@
     }
 
     build_cat();
+
+    var socket = io(); 
+
+    socket.on("connect", function(){
+        socket.on("init", function(data){
+            console.log(data);
+        });
+
+    });
    
 })();
 

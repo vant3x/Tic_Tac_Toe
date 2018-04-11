@@ -1,6 +1,6 @@
 const  express = require("express");
 const http = require("http");
-const app = require("./socket_express");
+var app = require("./socket_express");
 
 
 app.use("/static",express.static("public"));
