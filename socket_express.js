@@ -4,6 +4,9 @@ var socket_io = require("socket.io");
 var app = express();
 var io = socket_io();
 
+var figure = true;
+
+
 app.io = io;
 
 io.on("connection", function(socket){
@@ -11,10 +14,10 @@ io.on("connection", function(socket){
 
     /* Se envia a todos */ 
 
-    // io.emit()
+    socket.emit("init",{figure:figure});
 
-    /* socket.emit */
-    socket.emit("init",{mensaje: "Hola, bienvenido"});
+
+    figure = !figure;
 
     /* socket.broadcast.emit */
 

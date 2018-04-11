@@ -3,7 +3,8 @@ body{
 }
 
 .cat-element{
-    border:solid 1px rgb(163, 161, 161);
-    height: 100px;
+    border:solid 1.3px rgb(163, 161, 161);
+    height: 120px;
+    font-size: 30px;
 
 }

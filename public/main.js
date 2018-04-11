@@ -57,6 +57,7 @@
     socket.on("connect", function(){
         socket.on("init", function(data){
             console.log(data);
+            juego = data.figure;
         });
 
     });
