@@ -50,11 +50,21 @@
         return "<div class='cat-element col-xs-4' id='elemento-"+i+"'></div>"
     }
 
+    function convertir_aFigura(bandera){
+        if(bandera){
+            return "X";
+        }
+        return "O";
+    }
+
     build_cat();
 
     var socket = new Socket(function(figura,posicion){
         $("#elemento-"+posicion).innerHTML = figura;
-    },2,3);
+    },function(posicion,figura){
+        $("#elemento-"+posicion).innerHTML = convertir_aFigura(figura);
+
+    },null,null);
 
    
 })();

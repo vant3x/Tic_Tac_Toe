@@ -1,4 +1,4 @@
-function Socket(movimiento,gano,reinicio){
+function Socket(movimiento,nueva_jugada,gano,reinicio){
     var juego = false;
     var socket = io(); 
     var self = this;
@@ -8,7 +8,7 @@ function Socket(movimiento,gano,reinicio){
         movimiento(self.figura(),posicion);
     }
 
-    self.figura = function(bandera){
+    self.figura = function(){
         if(self.juego){
             return "X";
         }
@@ -19,6 +19,10 @@ function Socket(movimiento,gano,reinicio){
         socket.on("init", function(data){
             console.log(data);
             self.juego = data.figure;
+        });
+
+        socket.on("alguien_tiro",function(data){
+            nueva_jugada(data.posicion, data.figura);
         });
 
     });
