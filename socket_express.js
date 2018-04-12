@@ -4,6 +4,8 @@ var socket_io = require("socket.io");
 var app = express();
 var io = socket_io();
 
+var posiciones_ocupadas = {};
+
 var figure = true;
 
 
@@ -15,15 +17,19 @@ io.on("connection", function(socket){
     /* Se envia a todos */ 
 
     socket.emit("init",{figure:figure});
-
     socket.figure = figure;
-
 
     figure = !figure;
 
     socket.on("nuevo_movimiento", function(data){
         // console.log(data);
-        io.emit("alguien_tiro",{posicion: data.posicion,figura: socket.figure});
+        if(!posiciones_ocupadas[data.posicion]){
+            posiciones_ocupadas[data.posicion] = true;
+            io.emit("alguien_tiro",{posicion: data.posicion,figura: socket.figure});
+        }else{
+            console.log("Alguien tiró en una posición ocupada");
+        }
+        
     });
 
     /* socket.broadcast.emit */
