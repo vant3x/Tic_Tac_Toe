@@ -59,8 +59,9 @@
 
     build_cat();
 
-    var socket = new Socket(function(figura,posicion){
+    var socket = new Socket(function(figura){
         // $("#elemento-"+posicion).innerHTML = figura;
+        alert("Alguien ganó");
     },function(posicion,figura){
         $("#elemento-"+posicion).innerHTML = convertir_aFigura(figura);
 

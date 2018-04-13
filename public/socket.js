@@ -1,11 +1,10 @@
-function Socket(movimiento,nueva_jugada,gano,reinicio){
+function Socket(gano,nueva_jugada,reinicio){
     var juego = false;
     var socket = io(); 
     var self = this;
 
     self.play  = function(posicion){
         socket.emit("nuevo_movimiento",{posicion:posicion});
-        movimiento(self.figura(),posicion);
     }
 
     self.figura = function(){
@@ -17,8 +16,13 @@ function Socket(movimiento,nueva_jugada,gano,reinicio){
 
     socket.on("connect", function(){
         socket.on("init", function(data){
-            console.log(data);
+            // console.log(data);
             self.juego = data.figure;
+        });
+
+        socket.on("won", function(data){
+            var figura = data.figure;
+            gano(figura);
         });
 
         socket.on("alguien_tiro",function(data){
