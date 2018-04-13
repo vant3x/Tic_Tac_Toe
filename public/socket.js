@@ -19,6 +19,10 @@ function Socket(gano,nueva_jugada,reinicio){
             // console.log(data);
             self.juego = data.figure;
         });
+        
+        socket.on("reset", function(){
+            reinicio();
+        });
 
         socket.on("won", function(data){
             var figura = data.figure;

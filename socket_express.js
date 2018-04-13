@@ -15,6 +15,8 @@ app.io = io;
 io.on("connection", function(socket){
     console.log("Nuevo cliente conectado");
     // console.log(evaluator([2,1,0]));
+    posiciones_ocupadas = {};
+    socket.broadcast.emit("reset", {});
     /* Se envia a todos */ 
 
     socket.emit("init",{figure:figure});

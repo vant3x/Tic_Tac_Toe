@@ -30,8 +30,6 @@
                 socket.play(posicion);
             });
         }
-
-
     }
 
     function build_cat(){
@@ -57,6 +55,15 @@
         return "O";
     }
 
+    function reset(){
+        var elements = document.querySelectorAll(".cat-element");
+
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = ""
+        
+        }
+    }
+
     build_cat();
 
     var socket = new Socket(function(figura){
@@ -65,7 +72,9 @@
     },function(posicion,figura){
         $("#elemento-"+posicion).innerHTML = convertir_aFigura(figura);
 
-    },null,null);
+    },function(){
+        reset();
+    });
 
    
 })();
