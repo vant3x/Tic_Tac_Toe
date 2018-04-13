@@ -1,5 +1,6 @@
 var  express = require("express");
 var socket_io = require("socket.io");
+var evaluator = require("./public/evaluator");
 
 var app = express();
 var io = socket_io();
@@ -13,7 +14,7 @@ app.io = io;
 
 io.on("connection", function(socket){
     console.log("Nuevo cliente conectado");
-
+    console.log(evaluator([2,1,0]));
     /* Se envia a todos */ 
 
     socket.emit("init",{figure:figure});
