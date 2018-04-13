@@ -78,6 +78,8 @@
     },function(){
         swal("Alguien ingresó","Reiniciaremos la partida");
         reset();
+    }, function(){
+        swal("No es tu turno aún", "Espera a que el otro jugador tire");
     });
 
    

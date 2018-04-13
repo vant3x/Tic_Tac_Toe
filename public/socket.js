@@ -1,4 +1,4 @@
-function Socket(gano,nueva_jugada,reinicio){
+function Socket(gano,nueva_jugada,reinicio,no_te_toca){
     var juego = false;
     var socket = io(); 
     var self = this;
@@ -27,6 +27,10 @@ function Socket(gano,nueva_jugada,reinicio){
         socket.on("won", function(data){
             var figura = data.figure;
             gano(figura);
+        });
+
+        socket.on("no_te_toca", function(data){
+            no_te_toca();
         });
 
         socket.on("alguien_tiro",function(data){

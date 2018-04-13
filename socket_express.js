@@ -6,6 +6,7 @@ var app = express();
 var io = socket_io();
 
 var posiciones_ocupadas = {};
+var turno = true;
 
 var figure = true;
 
@@ -29,20 +30,31 @@ io.on("connection", function(socket){
         // console.log(data);
         if(!posiciones_ocupadas[data.posicion]){
 
-            // Agregamos el movimiento al tablero del usuario
-            socket.user_board.push(parseInt(data.posicion));
+            // Evaluar que si es tu turno
+             if(turno == socket.figure){
 
-            // Marcamos la posición como ocupada y enviamos el movimiento
+            
 
-            posiciones_ocupadas[data.posicion] = true;
-            io.emit("alguien_tiro",{posicion: data.posicion,figura: socket.figure});
+                    // Agregamos el movimiento al tablero del usuario
+                    socket.user_board.push(parseInt(data.posicion));
 
-            // Evaluamos si el usuario  ganó
-            var evaluacion_del_tablero = evaluator(socket.user_board);
-            console.log(`Resultado ${evaluacion_del_tablero} tablero: ${socket.user_board}`)
-            if(evaluacion_del_tablero){
-                console.log("Alguien ganó");
-                io.emit("won",{figure: socket.figure})
+                    // Marcamos la posición como ocupada y enviamos el movimiento
+
+                    posiciones_ocupadas[data.posicion] = true;
+                    io.emit("alguien_tiro",{posicion: data.posicion,figura: socket.figure});
+
+                    // Evaluamos si el usuario  ganó
+                    var evaluacion_del_tablero = evaluator(socket.user_board);
+                    console.log(`Resultado ${evaluacion_del_tablero} tablero: ${socket.user_board}`)
+                    if(evaluacion_del_tablero){
+                        console.log("Alguien ganó");
+                        io.emit("won",{figure: socket.figure})
+            }
+
+             turno = !turno;
+
+            }else{
+                socket.emit("no_te_toca", {});
             }
 
         }else{
