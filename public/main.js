@@ -56,6 +56,7 @@
     }
 
     function reset(){
+
         var elements = document.querySelectorAll(".cat-element");
 
         for (var i = 0; i < elements.length; i++) {
@@ -68,11 +69,14 @@
 
     var socket = new Socket(function(figura){
         // $("#elemento-"+posicion).innerHTML = figura;
-        alert("Alguien ganó");
+        var figura_string = convertir_aFigura(figura);
+        swal(`${figura_string} ganó la partida`);
+
     },function(posicion,figura){
         $("#elemento-"+posicion).innerHTML = convertir_aFigura(figura);
 
     },function(){
+        swal("Alguien ingresó","Reiniciaremos la partida");
         reset();
     });
 
