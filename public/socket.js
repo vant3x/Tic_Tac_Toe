@@ -1,4 +1,4 @@
-function Socket(gano,nueva_jugada,reinicio,no_te_toca){
+function Socket(gano,nueva_jugada,reinicio,no_te_toca,conexion){
     var juego = false;
     var socket = io(); 
     var self = this;
@@ -18,6 +18,8 @@ function Socket(gano,nueva_jugada,reinicio,no_te_toca){
         socket.on("init", function(data){
             // console.log(data);
             self.juego = data.figure;
+            conexion(self.figura());
+            
         });
         
         socket.on("reset", function(){

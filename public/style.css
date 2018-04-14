@@ -8,3 +8,10 @@ body{
     font-size: 30px;
 
 }
+
+.red{
+    color: rgb(200, 65, 65);
+}
+.blue{
+    color: #09f;
+}
